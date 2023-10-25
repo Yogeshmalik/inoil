@@ -21,16 +21,21 @@ const indianOilLogo =
 
 const Header = () => {
   return (
-    <>
-      <div className="flex bg-[#03174f]">
-        <img
-          src={indianOilLogo}
-          alt="Indian Oil Logo"
-          className="h-16 w-16 rounded-full bg-[#03174f]"
-        />
-        <span className=" h-full text-white font-bold text-xl my-auto px-8">
-          IndianOil
-        </span>
+    <div className="sticky top-0">
+      <div className="flex px-4 bg-[#03174f] justify-between">
+        <div className="flex my-auto align-middle items-center">
+          <img
+            src={indianOilLogo}
+            alt="Indian Oil Logo"
+            className="h-16 w-16 rounded-full bg-[#03174f]"
+          />
+          <span className=" h-full text-white font-bold text-xl my-auto px-8">
+            IndianOil
+          </span>
+        </div>
+        <div className="flex items-end h-16">
+            <img src={indianOilLogo} className="h-16 w-16 rounded-full" alt="user picture" />
+        </div>
       </div>
       <div className="bg-gradient-to-r from-[#03174f] to-[#f37022] py-4 px-4">
         <div className="container mx-auto flex justify-between items-center">
@@ -116,7 +121,7 @@ const Header = () => {
           </nav>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
