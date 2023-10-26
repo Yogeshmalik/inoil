@@ -5,10 +5,10 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App w-[100vw] min-w-screen">
       <Header />
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

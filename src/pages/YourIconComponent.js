@@ -1,7 +1,7 @@
 import React from "react";
 
 const YourIconComponent = () => {
-  return <div>YourIconComponent</div>;
+  return <div>+</div>;
 };
 
 export default YourIconComponent;
