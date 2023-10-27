@@ -14,12 +14,12 @@ import {
   UserCircleIcon,
   LockClosedIcon,
 } from "@heroicons/react/solid";
-import YourIconComponent from "../pages/YourIconComponent";
+import YourIconComponent from "./YourIconComponent";
 import { useMediaQuery } from "react-responsive";
 
 // Replace this with your Indian Oil logo image path
 const indianOilLogo =
-  "https://toppng.com/uploads/preview/indian-oil-vector-logo-11574259607xqymnsndtg.png";
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMA_WYHEgde3B_F2Ub2fgKj6zPZtFSU7mTCwAMV8srfe66spWz0qS_wNRv-nrJLOZs5g0&usqp=CAU";
 
 const Header = () => {
   // Use react-responsive to determine screen size
@@ -36,15 +36,15 @@ const Header = () => {
           <img
             src={indianOilLogo}
             alt="Indian Oil Logo"
-            className="h-16 w-16 rounded-full bg-[#03174f]"
+            className="h-16 w-16 px-1 mx-2 rounded-full bg-[#03174f]"
           />
-          <span className="h-full text-white font-bold text-4xl my-auto px-8">
+          <span className="h-full text-white font-bold text-4xl my-auto px-2">
             IndianOil
           </span>
         </div>
         <div className="flex items-end h-16">
           <img
-            src={indianOilLogo}
+            src="https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder.jpg"
             className="h-16 w-16 rounded-full"
             alt="user picture"
           />
@@ -93,7 +93,11 @@ const Header = () => {
                 />
                 <DropdownMenuItem
                   title="User Management"
-                  icon={<YourIconComponent />}
+                  icon={
+                    <span className="bg-white text-black font-semibold px-1">
+                      +
+                    </span>
+                  }
                   hasSubMenu
                 >
                   {/* Submenu content for User Management */}
@@ -110,7 +114,11 @@ const Header = () => {
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   title="YAS Scenario"
-                  icon={<YourIconComponent />}
+                  icon={
+                    <span className="bg-white text-black font-semibold px-1">
+                      +
+                    </span>
+                  }
                   hasSubMenu
                 >
                   {/* Submenu content for YAS Scenario */}
@@ -127,7 +135,11 @@ const Header = () => {
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   title="Setting"
-                  icon={<YourIconComponent />}
+                  icon={
+                    <span className="bg-white text-black font-semibold px-1">
+                      +
+                    </span>
+                  }
                   hasSubMenu
                 >
                   {/* Submenu content for Setting */}
