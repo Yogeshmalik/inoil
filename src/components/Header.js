@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import {
   HomeIcon,
@@ -21,9 +20,21 @@ import { useMediaQuery } from "react-responsive";
 const indianOilLogo =
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMA_WYHEgde3B_F2Ub2fgKj6zPZtFSU7mTCwAMV8srfe66spWz0qS_wNRv-nrJLOZs5g0&usqp=CAU";
 
-const Header = () => {
+const Header = ({ isOpen, icon }) => {
   // Use react-responsive to determine screen size
   const isMobile = useMediaQuery({ maxWidth: 768 }); // Adjust the maxWidth as needed
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+
+  // Use an object to store submenu open states
+  const [subMenuOpen, setSubMenuOpen] = useState({});
+
+  // Function to toggle a submenu open/close
+  const toggleSubMenu = (submenuName) => {
+    setSubMenuOpen((prevState) => ({
+      ...prevState,
+      [submenuName]: !prevState[submenuName],
+    }));
+  };
 
   return (
     <div
@@ -31,7 +42,7 @@ const Header = () => {
         isMobile ? "px-0" : "px-0" // Add padding only on mobile
       }`}
     >
-      <div className="flex bg-[#03174f] justify-between w-full">
+      {/* <div className="flex bg-[#03174f] justify-between w-full">
         <div className="flex my-auto align-middle items-center">
           <img
             src={indianOilLogo}
@@ -49,16 +60,19 @@ const Header = () => {
             alt="user picture"
           />
         </div>
-      </div>
+      </div> */}
       <div className="bg-gradient-to-r from-[#03174f] to-[#f37022] py-4 px-4 w-full">
         <div className="container mx-auto flex justify-between items-center">
           {" "}
           <nav className="space-x-4">
             <ul className="flex items-center text-center justify-between sm:space-x-4">
-              <li>
-                <a href="#" className="text-white flex flex-col items-center">
+              <li className="flex pb-7">
+                <a
+                  href="#"
+                  className="text-white flex space-y-2 flex-col justify-between items-center"
+                >
                   <HomeIcon className="h-6 w-6" />
-                  Dashboard
+                  <span>Dashboard</span>
                 </a>
               </li>
               <DropdownNavItem
@@ -91,69 +105,19 @@ const Header = () => {
                   link="/blacklist-vehicle"
                   icon={<YourIconComponent />}
                 />
-                <DropdownMenuItem
-                  title="User Management"
-                  icon={
-                    <span className="bg-white text-black font-semibold px-1">
-                      +
-                    </span>
-                  }
-                  hasSubMenu
-                >
-                  {/* Submenu content for User Management */}
-                  <DropdownMenuItem
-                    title="Submenu Item 1"
-                    link="/submenu-item-1"
-                    icon={<YourIconComponent />}
-                  />
-                  <DropdownMenuItem
-                    title="Submenu Item 2"
-                    link="/submenu-item-2"
-                    icon={<YourIconComponent />}
-                  />
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  title="YAS Scenario"
-                  icon={
-                    <span className="bg-white text-black font-semibold px-1">
-                      +
-                    </span>
-                  }
-                  hasSubMenu
-                >
-                  {/* Submenu content for YAS Scenario */}
-                  <DropdownMenuItem
-                    title="Submenu Item 1"
-                    link="/submenu-item-1"
-                    icon={<YourIconComponent />}
-                  />
-                  <DropdownMenuItem
-                    title="Submenu Item 2"
-                    link="/submenu-item-2"
-                    icon={<YourIconComponent />}
-                  />
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  title="Setting"
-                  icon={
-                    <span className="bg-white text-black font-semibold px-1">
-                      +
-                    </span>
-                  }
-                  hasSubMenu
-                >
-                  {/* Submenu content for Setting */}
-                  <DropdownMenuItem
-                    title="Submenu Item 1"
-                    link="/submenu-item-1"
-                    icon={<YourIconComponent />}
-                  />
-                  <DropdownMenuItem
-                    title="Submenu Item 2"
-                    link="/submenu-item-2"
-                    icon={<YourIconComponent />}
-                  />
-                </DropdownMenuItem>
+                {renderDropdown("User Management", [
+                  { title: "Submenu Item 1", href: "/submenu-item-1" },
+                  { title: "Submenu Item 2", href: "/submenu-item-2" },
+                ])}
+                {renderDropdown("YAS Scenario", [
+                  { title: "Submenu Item 3", href: "/submenu-item-3" },
+                  { title: "Submenu Item 4", href: "/submenu-item-4" },
+                ])}
+                {renderDropdown("Setting", [
+                  { title: "Submenu Item 5", href: "/submenu-item-5" },
+                  { title: "Submenu Item 6", href: "/submenu-item-6" },
+                ])}
+                
                 <DropdownMenuItem
                   title="Edit Truck Type Master"
                   link="/edit-truck-type-master"
@@ -239,27 +203,91 @@ const Header = () => {
       </div>
     </div>
   );
+
+  // Function to render a dropdown item with submenus
+  function renderDropdown(title, subItems) {
+    const isSubMenuOpen = subMenuOpen[title];
+
+    return (
+      <div className="relative inline-block w-full text-left" key={title}>
+        <div>
+          <button
+            onClick={() => toggleSubMenu(title)}
+            type="button"
+            className="inline-flex justify-between w-full px-4 py-2 text-md text-white bg-[#03174f] border border-white hover:bg-[#f37022] focus:outline-none focus:rin focus:ring-offset-2 focus:ring-indigo-500"
+            id={`menu-button-${title}`}
+            aria-expanded={isSubMenuOpen}
+            aria-haspopup="true"
+          >
+            <div
+              className={`bg-white flex text-black font-semibold text-md px-1 py-1/2 rounded-sm`}
+            >
+              +
+            </div>
+            <div className="flex justify-between w-full pl-2">
+              {title}
+              <YourIconComponent />
+            </div>
+          </button>
+        </div>
+        {isSubMenuOpen && (
+          <div
+            className="origin-top-right absolute -right-48 mt-2 top-0 w-48 rounded-md shadow-lg bg-[#03174f] ring-1 ring-black ring-opacity-5 focus:outline-none"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby={`menu-button-${title}`}
+            tabIndex="-1"
+          >
+            <div className="py-1" role="none">
+              {subItems.map((item) => (
+                <a
+                  href={item.href}
+                  className="block px-4 py-2 text-sm text-white hover:bg-[#f37022]"
+                  role="menuitem"
+                  key={item}
+                >
+                  {item.title}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
 };
 
 // DropdownNavItem component for individual dropdown items
-const DropdownNavItem = ({ title, icon, dropdownIcon, children }) => {
+const DropdownNavItem = ({
+  title,
+  icon,
+  children,
+  customClass = "",
+  hasSubMenu,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleOpen = () => {
+    setIsOpen(!isOpen);
+  };
   return (
-    <Popover as="li" className="relative">
-      {({ open }) => (
+    <Popover as="li" className={`relative dropdown-item ${customClass}`}>
+      {({ isOpen }) => (
         <>
           <Popover.Button
+            onClick={toggleOpen}
             className={`${
-              open ? "text-white" : "text-white"
-            } flex flex-col space mx-auto items-center focus:outline-none`}
+              isOpen ? "text-white" : "text-white"
+            } flex flex-col cursor-pointer space mx-auto items-center focus:outline-none`}
           >
-            <div className="flex space-x-10 flex-col items-center">
+            <div className="flex space-x-1 align-middle space-y-2 md:space-x-4 flex-col items-center">
               {icon}
-              <span>{title}</span>
+              <span className="flex text-center mx-auto w-full">{title}</span>
             </div>
-            {open ? (
+            {isOpen ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 ml-1 -mt-1 transition-transform transform rotate-180"
+                className="h-5 w-5 ml-1 mt-1 transition-transform transform rotate-180"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -274,7 +302,7 @@ const DropdownNavItem = ({ title, icon, dropdownIcon, children }) => {
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 ml-1 -mt-1 transition-transform transform rotate-0"
+                className="h-5 w-5 ml-1 mt-2 transition-transform transform rotate-90"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -290,7 +318,7 @@ const DropdownNavItem = ({ title, icon, dropdownIcon, children }) => {
           </Popover.Button>
 
           <Transition
-            show={open}
+            show={isOpen}
             enter="transition duration-100 ease-out"
             enterFrom="transform scale-95 opacity-0"
             enterTo="transform scale-100 opacity-100"
@@ -318,7 +346,7 @@ const DropdownMenuItem = ({ title, icon, link }) => {
   return (
     <a
       href={link}
-      className="block px-4 py-2 hover:bg-[#f37022] hover:text-white"
+      className="block px-4 py-2 cursor-pointer hover:bg-[#f37022] hover:text-white"
     >
       <div className="flex h- items-center">
         <span className="mr-2">{icon}</span>
