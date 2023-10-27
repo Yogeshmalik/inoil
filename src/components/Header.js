@@ -38,7 +38,7 @@ const Header = ({ isOpen, icon }) => {
 
   return (
     <div
-      className={`fixed top-0 w-full ${
+      className={`sticky top-0 w-full ${
         isMobile ? "px-0" : "px-0" // Add padding only on mobile
       }`}
     >
@@ -117,7 +117,7 @@ const Header = ({ isOpen, icon }) => {
                   { title: "Submenu Item 5", href: "/submenu-item-5" },
                   { title: "Submenu Item 6", href: "/submenu-item-6" },
                 ])}
-                
+
                 <DropdownMenuItem
                   title="Edit Truck Type Master"
                   link="/edit-truck-type-master"
