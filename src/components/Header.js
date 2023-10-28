@@ -23,8 +23,7 @@ const indianOilLogo =
 
 const Header = ({ isOpen, icon }) => {
   // Use react-responsive to determine screen size
-  const isMobile = useMediaQuery({ maxWidth: 768 }); // Adjust the maxWidth as needed
-  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+  const isMobile = useMediaQuery({ maxWidth: 768 }); 
 
   // Use an object to store submenu open states
   const [subMenuOpen, setSubMenuOpen] = useState({});
@@ -44,16 +43,17 @@ const Header = ({ isOpen, icon }) => {
       }`}
     >
       <div className="flex bg-[#03174f] justify-between w-full">
-        <div className="flex my-auto align-middle ">
+        <div className="flex items-center my-auto align-middle">
           <img
             src={indianOilLogo}
             alt="Indian Oil Logo"
-            className="h-10 w-10 px-1 mx-2 rounded-full bg-[#03174f]"
+            className="h-10 w-10 px-1 mx-1 md:mx-2 rounded-full bg-[#03174f]"
           />
-          <span className="h-fit text-white align-bottom text-end items-end font-bold text-3xl my-aut px-2">
+          <span className="text-white pb-1 font-bold text-xl md:text-3xl md:px-2 mt-auto">
             IndianOil
           </span>
         </div>
+
         <div className="flex items-end p-1">
           <img
             src="https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder.jpg"
@@ -65,7 +65,7 @@ const Header = ({ isOpen, icon }) => {
       <div className="bg-gradient-to-r from-[#03174f] to-[#f37022] py-1 px-4 w-full">
         <div className="container mx-auto flex justify-between items-center">
           {" "}
-          <nav className="space-x-4">
+          <nav className="md:space-x-4 flex">
             <ul className="flex items-center text-center justify-between sm:space-x-4">
               <li className="flex pb-7">
                 <a
@@ -73,7 +73,7 @@ const Header = ({ isOpen, icon }) => {
                   className="text-white flex space-y-2 flex-col justify-between items-center"
                 >
                   <HomeIcon className="h-6 w-6" />
-                  <span>Dashboard</span>
+                  <span className="text-sm md:text-lg">Dashboard</span>
                 </a>
               </li>
               <DropdownNavItem
@@ -283,50 +283,50 @@ const DropdownNavItem = ({
   };
   return (
     <Popover as="li" className={`relative dropdown-item ${customClass}`}>
-      {({ isOpen }) => (
+      {() => (
         <>
-          <Popover.Button
-            onClick={toggleOpen}
-            className={`${
-              isOpen ? "text-white" : "text-white"
-            } flex flex-col cursor-pointer space mx-auto items-center focus:outline-none`}
-          >
-            <div className="flex space-x-1 align-middle space-y-2 md:space-x-4 flex-col items-center">
-              {icon}
-              <span className="flex text-center mx-auto w-full">{title}</span>
-            </div>
-            {isOpen ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 ml-1 mt-1 transition-transform transform rotate-180"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 ml-1 mt-2 transition-transform transform rotate-90"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            )}
-          </Popover.Button>
+         <Popover.Button
+  onClick={toggleOpen}
+  className={`${
+    isOpen ? "text-white" : "text-white"
+  } flex flex-col cursor-pointer mx-auto items-center focus:outline-none`}
+>
+  <div className="flex flex-col items-center">
+    {icon}
+    <span className="text-center text-sm md:text-lg px-1 mt-1">{title}</span>
+  </div>
+  {isOpen ? (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5 ml-1 mt-1 transition-transform transform rotate-180"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M19 9l-7 7-7-7"
+      />
+    </svg>
+  ) : (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5 ml-1 mt-1 transition-transform transform rotate-90"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M9 5l7 7-7 7"
+      />
+    </svg>
+  )}
+</Popover.Button>
 
           <Transition
             show={isOpen}
