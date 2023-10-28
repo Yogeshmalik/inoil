@@ -147,7 +147,7 @@ const Header = ({ isOpen, icon }) => {
                     title: "Indent Usage Report",
                     to: "/reports/s&d-reports/indent-usage-report",
                   },
-                  { title: "Ageing Reports", to: "/ageing-reports" },
+                  { title: "Delivery Reports", to: "/reports/s&d-reports/delivery-reports" },
                 ])}
                 {renderDropdown("Track Turn Around Time Reports", [
                   {

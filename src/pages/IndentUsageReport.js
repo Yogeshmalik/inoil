@@ -112,7 +112,7 @@ const IndentUsageReport = () => {
 
       {/* Form Container */}
       <form
-      type='submit'
+        type="submit"
         className="bg-white rounded-lg shadow-lg mt-24 md:mx-auto mx-4"
         onSubmit={(e) => e.preventDefault()}
       >
@@ -274,50 +274,50 @@ const IndentUsageReport = () => {
             </div>
           </div>
         </div>
-      </form>
-      <div className="mt-8">
-        {/* Table */}
-        <div className="overflow-x-auto md:mx-8">
-          <table className="min-w-full bg-white rounded-lg shadow-md overflow-hidden divide-y divide-gray-200 opacity-90">
-            <thead className="bg-gradient-to-l from-[#03174f] to-[#f37022]">
-              {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column) => (
-                    <th
-                      {...column.getHeaderProps()}
-                      className="px-6 py-3 text-left text-xs leading-4 font-bold text-white uppercase tracking-wider"
-                    >
-                      {column.render("Header")}
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {rows.map((row, index) => {
-                prepareRow(row);
-                return (
-                  <tr
-                    {...row.getRowProps()}
-                    className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
-                  >
-                    {row.cells.map((cell) => {
-                      return (
-                        <td
-                          {...cell.getCellProps()}
-                          className="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500"
-                        >
-                          {cell.render("Cell")}
-                        </td>
-                      );
-                    })}
+        <div className="mt-8">
+          {/* Table */}
+          <div className="overflow-x-auto md:mx-8">
+            <table className="min-w-full bg-white rounded-lg shadow-md overflow-hidden divide-y divide-gray-200 opacity-90">
+              <thead className="bg-gradient-to-l from-[#03174f] to-[#f37022]">
+                {headerGroups.map((headerGroup) => (
+                  <tr {...headerGroup.getHeaderGroupProps()}>
+                    {headerGroup.headers.map((column) => (
+                      <th
+                        {...column.getHeaderProps()}
+                        className="px-6 py-3 text-left text-xs leading-4 font-bold text-white uppercase tracking-wider"
+                      >
+                        {column.render("Header")}
+                      </th>
+                    ))}
                   </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                ))}
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {rows.map((row, index) => {
+                  prepareRow(row);
+                  return (
+                    <tr
+                      {...row.getRowProps()}
+                      className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
+                    >
+                      {row.cells.map((cell) => {
+                        return (
+                          <td
+                            {...cell.getCellProps()}
+                            className="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500"
+                          >
+                            {cell.render("Cell")}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      </form>
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar />
     </div>
   );

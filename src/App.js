@@ -12,6 +12,7 @@ import VehicleNumberChange from "./pages/VehicleNumberChange";
 import AgeingReports from "./pages/AgeingReports";
 import Home from "./components/Home";
 import IndentUsageReport from "./pages/IndentUsageReport";
+import DeliveryReports from "./pages/DeliveryReports";
 
 function App() {
   // const location = useLocation();
@@ -37,10 +38,20 @@ function App() {
             path="/process/yas-scenario/vehicle-number-change"
             element={<VehicleNumberChange />}
           />
-          <Route path="/reports/track-turn-around-time-reports/ageing-report" element={<AgeingReports />} />
-          
+          <Route
+            path="/reports/track-turn-around-time-reports/ageing-report"
+            element={<AgeingReports />}
+          />
+          <Route
+            path="/reports/s&d-reports/delivery-reports"
+            element={<DeliveryReports />}
+          />
+
           {/* Reports Navbar */}
-          <Route path="/reports/s&d-reports/indent-usage-report" element={<IndentUsageReport />} />
+          <Route
+            path="/reports/s&d-reports/indent-usage-report"
+            element={<IndentUsageReport />}
+          />
           {/* Define other routes here */}
         </Routes>
 
