@@ -107,7 +107,7 @@ const IndentUsageReport = () => {
     useTable({ columns, data: tableData });
 
   return (
-    <div className="flex flex-col py-9">
+    <div className="flex flex-col py-6">
       <h1 className="text-3xl text-gray-700 pl-4">Indent Usage Report</h1>
 
       {/* Form Container */}

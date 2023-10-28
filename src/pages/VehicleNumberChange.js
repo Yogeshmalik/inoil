@@ -28,7 +28,7 @@ const VehicleNumberChange = () => {
   };
 
   return (
-    <div className="flex flex-col py-9">
+    <div className="flex flex-col py-6">
       <h1 className="text-3xl text-gray-700 pl-4">Vehicle Number Change</h1>
 
       {/* Form Container */}

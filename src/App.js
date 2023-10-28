@@ -37,7 +37,7 @@ function App() {
             path="/process/yas-scenario/vehicle-number-change"
             element={<VehicleNumberChange />}
           />
-          <Route path="/ageing-reports" element={<AgeingReports />} />
+          <Route path="/reports/track-turn-around-time-reports/ageing-report" element={<AgeingReports />} />
           
           {/* Reports Navbar */}
           <Route path="/reports/s&d-reports/indent-usage-report" element={<IndentUsageReport />} />

@@ -39,7 +39,7 @@ const Breadcrumbs = ({ currentPath }) => {
   const breadcrumbTrail = getBreadcrumbTrail(currentPath);
 
   return (
-    <div className="flex justify-between mt-20 px-2 md:px-4 z-0 absolute w-full">
+    <div className="flex justify-between mt-16 px-2 md:px-4 z-0 absolute w-full">
       <div className="mx-auto bg-white w-full lg:mx-0 sm:text-cente lg:text-left flex items-center pt-">
         <div className="flex align-middle px-1 md:px-0 text-center items-center my-auto h-full bg-[#f37022]">
           <a href="/">
