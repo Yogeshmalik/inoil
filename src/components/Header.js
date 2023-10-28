@@ -15,6 +15,7 @@ import {
 } from "@heroicons/react/solid";
 import YourIconComponent from "./YourIconComponent";
 import { useMediaQuery } from "react-responsive";
+import { Link, NavLink } from "react-router-dom";
 
 // Replace this with your Indian Oil logo image path
 const indianOilLogo =
@@ -38,37 +39,37 @@ const Header = ({ isOpen, icon }) => {
 
   return (
     <div
-      className={`sticky top-0 w-full ${
+      className={`sticky top-0 w-full z-20 drop-shadow-lg shadow-lg shadow-black hover:shadow-[#03174f] ${
         isMobile ? "px-0" : "px-0" // Add padding only on mobile
       }`}
     >
-      {/* <div className="flex bg-[#03174f] justify-between w-full">
-        <div className="flex my-auto align-middle items-center">
+      <div className="flex bg-[#03174f] justify-between w-full">
+        <div className="flex my-auto align-middle ">
           <img
             src={indianOilLogo}
             alt="Indian Oil Logo"
-            className="h-16 w-16 px-1 mx-2 rounded-full bg-[#03174f]"
+            className="h-10 w-10 px-1 mx-2 rounded-full bg-[#03174f]"
           />
-          <span className="h-full text-white font-bold text-4xl my-auto px-2">
+          <span className="h-fit text-white align-bottom text-end items-end font-bold text-3xl my-aut px-2">
             IndianOil
           </span>
         </div>
-        <div className="flex items-end h-16">
+        <div className="flex items-end p-1">
           <img
             src="https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder.jpg"
-            className="h-16 w-16 rounded-full"
+            className="h-10 w-10 rounded-full"
             alt="user picture"
           />
         </div>
-      </div> */}
-      <div className="bg-gradient-to-r from-[#03174f] to-[#f37022] py-4 px-4 w-full">
+      </div>
+      <div className="bg-gradient-to-r from-[#03174f] to-[#f37022] py-1 px-4 w-full">
         <div className="container mx-auto flex justify-between items-center">
           {" "}
           <nav className="space-x-4">
             <ul className="flex items-center text-center justify-between sm:space-x-4">
               <li className="flex pb-7">
                 <a
-                  href="#"
+                  href="/"
                   className="text-white flex space-y-2 flex-col justify-between items-center"
                 >
                   <HomeIcon className="h-6 w-6" />
@@ -106,16 +107,19 @@ const Header = ({ isOpen, icon }) => {
                   icon={<YourIconComponent />}
                 />
                 {renderDropdown("User Management", [
-                  { title: "Submenu Item 1", href: "/submenu-item-1" },
-                  { title: "Submenu Item 2", href: "/submenu-item-2" },
+                  { title: "Submenu Item 1", to: "/submenu-item-1" },
+                  { title: "Submenu Item 2", to: "/submenu-item-2" },
                 ])}
                 {renderDropdown("YAS Scenario", [
-                  { title: "Submenu Item 3", href: "/submenu-item-3" },
-                  { title: "Submenu Item 4", href: "/submenu-item-4" },
+                  {
+                    title: "Vehicle Number Change",
+                    to: "/process/yas-scenario/vehicle-number-change",
+                  },
+                  { title: "Ageing Reports", to: "/ageing-reports" },
                 ])}
                 {renderDropdown("Setting", [
-                  { title: "Submenu Item 5", href: "/submenu-item-5" },
-                  { title: "Submenu Item 6", href: "/submenu-item-6" },
+                  { title: "Submenu Item 5", to: "/submenu-item-5" },
+                  { title: "Submenu Item 6", to: "/submenu-item-6" },
                 ])}
 
                 <DropdownMenuItem
@@ -138,6 +142,13 @@ const Header = ({ isOpen, icon }) => {
                 title="Reports"
                 icon={<ClipboardCheckIcon className="h-6 w-6" />}
               >
+                {renderDropdown("S&D Reports", [
+                  {
+                    title: "Indent Usage Report",
+                    to: "/reports/s&d-reports/indent-usage-report",
+                  },
+                  { title: "Ageing Reports", to: "/ageing-reports" },
+                ])}
                 {/* Dropdown content for Reports */}
                 {/* Add your content here */}
               </DropdownNavItem>
@@ -205,7 +216,7 @@ const Header = ({ isOpen, icon }) => {
   );
 
   // Function to render a dropdown item with submenus
-  function renderDropdown(title, subItems) {
+  function renderDropdown(title, subItems, to) {
     const isSubMenuOpen = subMenuOpen[title];
 
     return (
@@ -240,14 +251,14 @@ const Header = ({ isOpen, icon }) => {
           >
             <div className="py-1" role="none">
               {subItems.map((item) => (
-                <a
-                  href={item.href}
+                <Link
+                  to={item.to}
                   className="block px-4 py-2 text-sm text-white hover:bg-[#f37022]"
                   role="menuitem"
-                  key={item}
+                  key={item.title}
                 >
                   {item.title}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -344,15 +355,15 @@ const DropdownNavItem = ({
 // DropdownMenuItem component for individual dropdown menu items
 const DropdownMenuItem = ({ title, icon, link }) => {
   return (
-    <a
-      href={link}
+    <Link
+      to={link}
       className="block px-4 py-2 cursor-pointer hover:bg-[#f37022] hover:text-white"
     >
       <div className="flex h- items-center">
         <span className="mr-2">{icon}</span>
         <span>{title}</span>
       </div>
-    </a>
+    </Link>
   );
 };
 
